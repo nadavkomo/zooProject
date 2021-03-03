@@ -112,11 +112,11 @@
             }
             var video = document.getElementsByClassName('app__videoFeed')[0];
             var mode = { facingMode: 'user' }
-            function startVideo() {
+            function startVideoEnvironment() {
                 console.log('start');
                 navigator.getUserMedia(
                     {
-                        video: mode
+                        video: { facingMode: 'environment' }
                     },
                     (stream) => {
                         if (video) {
@@ -126,15 +126,26 @@
                     (err) => console.error(err)
                 );
             }
-            startVideo()
+            function startVideoUser() {
+                console.log('start');
+                navigator.getUserMedia(
+                    {
+                        video: { facingMode: 'user' }
+                    },
+                    (stream) => {
+                        if (video) {
+                            video.srcObject = stream;
+                        }
+                    },
+                    (err) => console.error(err)
+                );
+            }
+            startVideoEnvironment()
+            var environment = false
             function changeCamera() {
-                // if (mode === { facingMode: 'user' }) mode = { facingMode: 'environment' }
-                // else mode = { facingMode: 'user' }
-                if(isMobile) {
-                    if(mode.facingMode === 'environment') mode.facingMode === 'user'
-                    else mode.facingMode === 'environment'
-                    setTimeout(startVideo,1000)
-                }
+                if(!environment) startVideoUser()
+                else startVideoEnvironment()
+                environment = !environment
             }
 
             function takePicture() {

@@ -1,13 +1,77 @@
-.login {
-    display: none;
+* {
+    box-sizing: border-box;
 }
+
+body {
+    background-color: #220035;
+    color: aqua;
+}
+
+.login {
+    display: block;
+}
+
+.login .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.login .content>* {
+    margin-bottom: 15px;
+}
+
 .main {
     display: none;
 }
 
+.main .details {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.main .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.station .description {
+    max-width: 500px;
+}
+
+.finish .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.finish .content h1, .login .content h1 {
+    font-size: 40px;
+    margin-bottom: 80px;
+}
+
+.main .content .top {
+    margin-bottom: 80px;
+}
+
+
+
+
+
+
+
+
 .screenshot {
     display: none;
 }
+
 .camera-container {
     display: flex;
     flex-direction: column;
@@ -129,6 +193,7 @@
     z-index: 1;
     display: none;
 }
+
 .model-content {
     height: 100%;
     width: 100%;

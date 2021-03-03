@@ -10,30 +10,39 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 
-<body onload="init()">
+<body>
     <section class="login">
-        <h1>Wekcom to the zoo simulator!</h1>
-        <input type="text" class="username-input" placeholder="Username">
-        <input type="text" class="password-input" placeholder="Password">
-        <button onclick="login()">Login</button>
+        <form class="content">
+            <h1 class="text-center">Welcome to the zoo simulator!</h1>
+            <input type="text" class="username-input" placeholder="Username">
+            <input type="text" class="password-input" placeholder="Password">
+            <span class="error"></span>
+            <button onclick="login(event)">Login</button>
+        </form>
     </section>
-    <section class="main">
-        <div class="score">
-            <p></p>
+    <section style="display: none;" class="main">
+        <div class="content">
+            <section class="top">
+                <section class="details">
+                    <div class="score">
+                        <p></p>
+                    </div>
+                    <div class="status">
+                        <p></p>
+                    </div>
+                </section>
+                <h2 class="title"></h2>
+            </section>
+            <div class="qr-scanner">
+                <button onclick="startStation()">Start!</button>
+            </div>
+            <button class="change-user-btn" onclick="toLogin()">Change User</button>
+            <button class="finish-btn" onclick="toEnd()">Finish</button>
+            <button class="help-btn" onclick="showHelp()">Help</button>
+            <button class="map-btn" onclick="showMap()">Map</button>
         </div>
-        <div class="status">
-            <p></p>
-        </div>
-        <h2 class="title"></h2>
-        <div class="qr-scanner">
-            <button onclick="startStation()">Start!</button>
-        </div>
-        <button class="change-user-btn" onclick="backToLogin()">Change User</button>
-        <button class="finish-btn" onclick="toEnd()">Finish</button>
-        <button class="help-btn" onclick="showHelp()">Help</button>
-        <button class="map-btn" onclick="showMap()">Map</button>
     </section>
-    <section class="station">
+    <section style="display: none;" class="station">
         <div class="container">
             <div class="camera">
                 <div class="app__input">
@@ -75,6 +84,9 @@
                 <canvas style="display: none;" class="canvas" height=500 width=500></canvas>
             </div>
             <section class="content text-center">
+                <h2 class="desc-title">Did you know?</h2>
+                <p class="description"></p>
+                <button onclick="toQuiz()" class="next-btn">Go to quiz!</button>
                 <h2 class="question"></h2>
                 <section class="model">
                     <div class="model-content">
@@ -89,6 +101,7 @@
                 </section>
             </section>
         </div>
+        <script src="js/main.js"></script>
         <script>
             var isMobile = false; //initiate as false
             // device detection
@@ -264,7 +277,7 @@
             }
 
         </script>
-        <script>
+        <!-- <script>
             var quize = [{
                 question: "What is the favorite food for this dinosaur?",
                 answers: ['bananas', 'meat', 'leaves'],
@@ -308,9 +321,15 @@
                 document.querySelector('.model').style.display = 'none'
                 document.querySelector('.answers').style.display = 'block'
             }
-        </script>
+        </script> -->
     </section>
-    <script src="js/main.js"></script>
+    <section style="display: none;" class="finish">
+        <section class="content">
+            <h1>Thanks for playing!</h1>
+            <h2>We will be happy to see you again soon!</h2>
+            <button onclick="toLogin()">Play Again!</button>
+        </section>
+    </section>
 </body>
 
 </html>

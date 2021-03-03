@@ -8,6 +8,7 @@ function login(ev) {
             document.querySelector('.login .error').innerText = ''
         }, 3000)
     } else {
+        currStation = 0
         localStorage.setItem('currUser', username.value)
         document.querySelector('.main .title').innerText = 'Hi ' + username.value + ', enjoy!'
         document.querySelector('.status').innerText = `${currStation}/${stations.length} stations`
@@ -123,7 +124,7 @@ function checkAns(ev) {
         document.querySelector('.model').style.backgroundColor = 'green'
         document.querySelector('.model .title').innerText = 'Correct Answer:)'
         setTimeout(() => {
-            if(document.querySelector('.model').style.display === 'none') return
+            if (document.querySelector('.model').style.display === 'none') return
             closeModel()
         }, 2000)
     } else {

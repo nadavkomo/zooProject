@@ -128,9 +128,13 @@
             }
             startVideo()
             function changeCamera() {
-                if (mode === { facingMode: 'user' }) mode = { facingMode: 'environment' }
-                else mode = { facingMode: 'user' }
-                console.log(mode);
+                // if (mode === { facingMode: 'user' }) mode = { facingMode: 'environment' }
+                // else mode = { facingMode: 'user' }
+                if(isMobile) {
+                    if(mode.facingMode === 'environment') mode.facingMode === 'user'
+                    else mode.facingMode === 'environment'
+                    startVideo()
+                }
             }
 
             function takePicture() {

@@ -30,6 +30,8 @@ var stations = [
     }
 ]
 
+
+
 function login(ev) {
     ev.preventDefault()
     var username = document.querySelector('.username-input')
@@ -41,6 +43,7 @@ function login(ev) {
         }, 3000)
     } else {
         currStation = 0
+        score = 0
         localStorage.setItem('currUser', username.value)
         document.querySelector('.main .title').innerText = 'Hi ' + username.value + ', enjoy!'
         document.querySelector('.status h3').innerText = `${currStation}/${stations.length} stations`
@@ -63,6 +66,7 @@ function init() {
     currAns = 0
     document.getElementById('model1').src = stations[currStation].url
     document.getElementById('model2').src = stations[currStation].url
+    if(stations[currStation].url === './glb/Wolf-Blender.glb') startSound('Running')
     document.querySelector('.description').style.display = 'block'
     document.querySelector('.desc-title').style.display = 'block'
     document.querySelector('.next-btn').style.display = 'block'
@@ -84,6 +88,7 @@ function toQuiz() {
 }
 
 function toMain() {
+    stopSound()
     currStation++
     document.querySelector('.status h3').innerText = `${currStation}/${stations.length} stations`
     document.querySelector('.score h3').innerText = `${score} points`
@@ -114,7 +119,7 @@ function nextQuestion() {
         toMain()
     }
 }
-
+var timeout;
 function checkAns(ev) {
     document.querySelector('.model').style.display = 'block'
     document.querySelector('.answers').style.display = 'none'
@@ -122,20 +127,21 @@ function checkAns(ev) {
         document.querySelector('.model').style.backgroundColor = 'green'
         document.querySelector('.model .title').innerText = 'Correct Answer:)'
         score += 10
-        setTimeout(() => {
+        timeout = setTimeout(() => {
             if (document.querySelector('.model').style.display === 'none') return
             closeModel()
         }, 2000)
     } else {
         document.querySelector('.model').style.backgroundColor = 'red'
         document.querySelector('.model .title').innerText = 'Wrong Answer:('
-        setTimeout(() => {
+        timeout = setTimeout(() => {
             closeModel()
         }, 2000)
     }
 }
 
 function closeModel() {
+    clearTimeout(timeout)
     document.querySelector('.model').style.display = 'none'
     document.querySelector('.answers').style.display = 'block'
     nextQuestion()

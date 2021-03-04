@@ -60,6 +60,9 @@
                     <button onclick="changeAction('Running')">RUN</button>
                     <button onclick="changeAction('Idle')">IDLE</button>
                 </div>
+                <audio id="myAudio" controls loop style="visibility: hidden; height: 0;">
+                    <source src="" type="audio/mpeg">
+                </audio>
                 <div class="btns-position">
                     <button onclick="changePositionTop()">Up</button>
                     <section>
@@ -211,12 +214,23 @@
                     modelViewer2.src = './glb/Wolf-Blender.glb'
                 }
             }
-
+            function stopSound() {
+                var audio = document.querySelector('#myAudio')
+                audio.pause();
+                audio.currentTime = 0;
+            }
+            function startSound(action) {
+                var audio = document.querySelector('#myAudio')
+                audio.pause();
+                audio.currentTime = 0;
+                audio.src = `./sound/${action}.mp3`
+                audio.play()
+            }
             function changeAction(action) {
+                startSound(action)
                 var modelViewer1 = document.getElementById('model1')
                 var modelViewer2 = document.getElementById('model2')
                 if (modelViewer1.src === './glb/Wolf-Blender.glb') {
-                    console.log('check');
                     if (action === 'none') {
                         modelViewer1.animationName = '05_site_Armature_0'
                         modelViewer2.animationName = '05_site_Armature_0'

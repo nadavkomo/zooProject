@@ -1,30 +1,6 @@
-function login(ev) {
-    ev.preventDefault()
-    var username = document.querySelector('.username-input')
-    var password = document.querySelector('.password-input')
-    if (!username.value || !password.value) {
-        document.querySelector('.login .error').innerText = 'Username / Password required!'
-        setTimeout(() => {
-            document.querySelector('.login .error').innerText = ''
-        }, 3000)
-    } else {
-        currStation = 0
-        localStorage.setItem('currUser', username.value)
-        document.querySelector('.main .title').innerText = 'Hi ' + username.value + ', enjoy!'
-        document.querySelector('.status').innerText = `${currStation}/${stations.length} stations`
-        document.querySelector('.login').style.display = 'none'
-        document.querySelector('.main').style.display = 'block'
-    }
-}
-
-function startStation() {
-    if (currStation === stations.length) toEnd()
-    else {
-        document.querySelector('.main').style.display = 'none'
-        document.querySelector('.station').style.display = 'block'
-        init()
-    }
-}
+var score = 0
+var currStation = 0
+var currAns
 var stations = [
     {
         url: "./glb/RobotExpressive.glb",
@@ -53,17 +29,36 @@ var stations = [
         description: 'Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nihil dolorum voluptatum, laborum praesentium corporis accusantium, voluptas excepturi facere esse impedit cum ipsa quaerat distinctio magni, recusandae nam nulla repellendus sapiente.',
     }
 ]
-// var quize = [{
-//     question: "What is the favorite food for this dinosaur?",
-//     answers: ['bananas', 'meat', 'leaves'],
-//     currectAnswer: 2
-// }, {
-//     question: "What is the height of the tallest dinosaur?",
-//     answers: ['2.5m', '7m', '10m'],
-//     currectAnswer: 3
-// }]
-var currStation = 0
-var currAns
+
+function login(ev) {
+    ev.preventDefault()
+    var username = document.querySelector('.username-input')
+    var password = document.querySelector('.password-input')
+    if (!username.value || !password.value) {
+        document.querySelector('.login .error').innerText = 'Username / Password required!'
+        setTimeout(() => {
+            document.querySelector('.login .error').innerText = ''
+        }, 3000)
+    } else {
+        currStation = 0
+        localStorage.setItem('currUser', username.value)
+        document.querySelector('.main .title').innerText = 'Hi ' + username.value + ', enjoy!'
+        document.querySelector('.status h3').innerText = `${currStation}/${stations.length} stations`
+        document.querySelector('.score h3').innerText = `${score} points`
+        document.querySelector('.login').style.display = 'none'
+        document.querySelector('.main').style.display = 'block'
+    }
+}
+
+function startStation() {
+    if (currStation === stations.length) toEnd()
+    else {
+        document.querySelector('.main').style.display = 'none'
+        document.querySelector('.station').style.display = 'block'
+        init()
+    }
+}
+
 function init() {
     currAns = 0
     document.getElementById('model1').src = stations[currStation].url
@@ -75,6 +70,7 @@ function init() {
     document.querySelector('.question').style.display = 'none'
     document.querySelector('.description').innerText = stations[currStation].description
 }
+
 function toQuiz() {
     document.querySelector('.answers').style.display = 'block'
     document.querySelector('.question').style.display = 'block'
@@ -89,7 +85,8 @@ function toQuiz() {
 
 function toMain() {
     currStation++
-    document.querySelector('.status').innerText = `${currStation}/${stations.length} stations`
+    document.querySelector('.status h3').innerText = `${currStation}/${stations.length} stations`
+    document.querySelector('.score h3').innerText = `${score} points`
     document.querySelector('.station').style.display = 'none'
     document.querySelector('.main').style.display = 'block'
 }
@@ -117,12 +114,14 @@ function nextQuestion() {
         toMain()
     }
 }
+
 function checkAns(ev) {
     document.querySelector('.model').style.display = 'block'
     document.querySelector('.answers').style.display = 'none'
     if (ev.target.className.indexOf(stations[currStation].quize[currAns].currectAnswer) != -1) {
         document.querySelector('.model').style.backgroundColor = 'green'
         document.querySelector('.model .title').innerText = 'Correct Answer:)'
+        score += 10
         setTimeout(() => {
             if (document.querySelector('.model').style.display === 'none') return
             closeModel()
@@ -135,6 +134,7 @@ function checkAns(ev) {
         }, 2000)
     }
 }
+
 function closeModel() {
     document.querySelector('.model').style.display = 'none'
     document.querySelector('.answers').style.display = 'block'

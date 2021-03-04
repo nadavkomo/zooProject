@@ -25,21 +25,25 @@
             <section class="top">
                 <section class="details">
                     <div class="score">
-                        <p></p>
+                        <h3></h3>
                     </div>
                     <div class="status">
-                        <p></p>
+                        <h3></h3>
                     </div>
                 </section>
                 <h2 class="title"></h2>
             </section>
-            <div class="qr-scanner">
-                <button onclick="startStation()">Start!</button>
+            <div class="center">
+                <div class="qr-scanner">
+                    <button class="btn" onclick="startStation()">Start!</button>
+                </div>
+                <section class="btns-bottom">
+                    <button class="finish-btn btn" onclick="toEnd()">Finish</button>
+                    <button class="change-user-btn btn" onclick="toLogin()">Change User</button>
+                    <button class="help-btn btn" onclick="showHelp()">Help</button>
+                    <button class="map-btn btn" onclick="showMap()">Map</button>
+                </section>
             </div>
-            <button class="change-user-btn" onclick="toLogin()">Change User</button>
-            <button class="finish-btn" onclick="toEnd()">Finish</button>
-            <button class="help-btn" onclick="showHelp()">Help</button>
-            <button class="map-btn" onclick="showMap()">Map</button>
         </div>
     </section>
     <section style="display: none;" class="station">
@@ -88,17 +92,19 @@
                 <h2 class="desc-title">Did you know?</h2>
                 <p class="description"></p>
                 <button onclick="toQuiz()" class="next-btn">Go to quiz!</button>
-                <h2 class="question"></h2>
-                <section class="model">
-                    <div class="model-content">
-                        <h2 class="title"></h2>
-                        <button class="close-btn hover-pointer" onclick="closeModel()">X</button>
-                    </div>
-                </section>
-                <section class="answers">
-                    <h3 class="answer1 hover-pointer" onclick="checkAns(event)"></h3>
-                    <h3 class="answer2 hover-pointer" onclick="checkAns(event)"></h3>
-                    <h3 class="answer3 hover-pointer" onclick="checkAns(event)"></h3>
+                <section class="quiz">
+                    <h2 class="question"></h2>
+                    <section class="model">
+                        <div class="model-content">
+                            <h2 class="title"></h2>
+                            <button class="close-btn hover-pointer" onclick="closeModel()">X</button>
+                        </div>
+                    </section>
+                    <section class="answers">
+                        <h3 class="answer1 hover-pointer" onclick="checkAns(event)"></h3>
+                        <h3 class="answer2 hover-pointer" onclick="checkAns(event)"></h3>
+                        <h3 class="answer3 hover-pointer" onclick="checkAns(event)"></h3>
+                    </section>
                 </section>
             </section>
         </div>
@@ -143,7 +149,7 @@
             startVideoEnvironment()
             var environment = false
             function changeCamera() {
-                if(!environment) startVideoUser()
+                if (!environment) startVideoUser()
                 else startVideoEnvironment()
                 environment = !environment
             }

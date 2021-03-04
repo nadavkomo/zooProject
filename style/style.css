@@ -271,10 +271,11 @@ button:focus {
 }
 
 .model {
-    width: 150px;
+    width: 250px;
     height: 100px;
     z-index: 1;
     display: none;
+    border-radius: 1rem;
 }
 
 .model-content {

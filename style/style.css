@@ -170,6 +170,12 @@ button:focus {
     align-items: center;
 }
 
+.camera .center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .app__container {
     position: relative;
     width: 80%;

@@ -15,7 +15,11 @@
         <form class="content">
             <h1 class="text-center">Welcome to the zoo simulator!</h1>
             <input type="text" class="username-input" placeholder="Username">
-            <input type="text" class="password-input" placeholder="Password">
+            <input type="password" class="password-input" placeholder="Password">
+            <section class="password-section">
+                <input type="checkbox" onclick="togglePassword()">
+                <span>Show Password</span>
+            </section>
             <span class="error"></span>
             <button onclick="login(event)">Login</button>
         </form>
@@ -35,7 +39,7 @@
             </section>
             <div class="center">
                 <div class="qr-scanner">
-                    <button class="btn" onclick="startStation()">Start!</button>
+                    <button class="btn" onclick="startStation()">Go to demo!</button>
                 </div>
                 <section class="btns-bottom">
                     <button class="finish-btn btn" onclick="toEnd()">Finish</button>
@@ -50,11 +54,14 @@
         <div class="container">
             <div class="camera">
                 <div class="app__input">
-                    <button onclick="takePicture()">Take a picture</button>
+                    <section class="control-btns">
+                        <button onclick="takePicture()">Take a picture</button>
+                        <button onclick="backToCamera()">Back to camera</button>
+                    </section>
                     <button><input type="file" onchange="onFileSelected(event)" /></button>
                 </div>
                 <!-- <button onclick="changeCamera()">Change Camera</button> -->
-                <button class="change-model-btn" onclick="changeModel()">Change 3D Model</button>
+                <!-- <button class="change-model-btn" onclick="changeModel()">Change 3D Model</button> -->
                 <div class="btns-action">
                     <button onclick="changeAction('none')">STOP</button>
                     <button onclick="changeAction('Running')">RUN</button>
@@ -63,32 +70,34 @@
                 <audio id="myAudio" controls loop style="visibility: hidden; height: 0;">
                     <source src="" type="audio/mpeg">
                 </audio>
-                <div class="btns-position">
-                    <button onclick="changePositionTop()">Up</button>
-                    <section>
+                <section class="center">
+                    <div class="camera-container">
+                        <div class="app__container">
+                            <video muted autoPlay class="app__videoFeed"></video>
+                            <div class="demo">
+                                <model-viewer id="model1" src="./glb/RobotExpressive.glb" camera-controls autoplay
+                                    animation-name="Armature|Die.001" ar>
+                                </model-viewer>
+                            </div>
+                        </div>
+                        <div class="screenshot">
+                            <img id="myimage" src="./default.png" alt="" />
+                            <div class="demo">
+                                <model-viewer id="model2" src="./glb/RobotExpressive.glb" camera-controls autoplay
+                                    animation-name="none" ar>
+                                </model-viewer>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="btns-position">
+                        <button onclick="changePositionTop()">Up</button>
+                        <!-- <section> -->
                         <button onclick="changePositionLeft()">Left</button>
-                        <button onclick="changePositionRight()">Right</button><br>
-                    </section>
-                    <button onclick="changePositionBottom()">Down</button>
-                </div>
-                <div class="camera-container">
-                    <div class="app__container">
-                        <video muted autoPlay class="app__videoFeed"></video>
-                        <div class="demo">
-                            <model-viewer id="model1" src="./glb/RobotExpressive.glb" camera-controls autoplay
-                                animation-name="Armature|Die.001" ar>
-                            </model-viewer>
-                        </div>
+                        <button onclick="changePositionRight()">Right</button>
+                        <!-- </section> -->
+                        <button onclick="changePositionBottom()">Down</button>
                     </div>
-                    <div class="screenshot">
-                        <img id="myimage" src="./default.png" alt="" />
-                        <div class="demo">
-                            <model-viewer id="model2" src="./glb/RobotExpressive.glb" camera-controls autoplay
-                                animation-name="none" ar>
-                            </model-viewer>
-                        </div>
-                    </div>
-                </div>
+                </section>
                 <canvas style="display: none;" class="canvas" height=500 width=500></canvas>
             </div>
             <section class="content text-center">
@@ -158,23 +167,28 @@
             }
 
             function takePicture() {
-                console.log(document.querySelector('.app__input button').innerText === 'Take a picture');
-                if (document.querySelector('.app__input button').innerText != 'Take a picture') {
-                    document.querySelector('.app__input button').innerText = 'Take a picture'
-                    document.querySelector('.app__container').style.visibility = 'visible'
-                    document.querySelector('.app__container').style.height = '100%'
-                    document.querySelector('.screenshot').style.display = 'none'
-                } else {
-                    document.querySelector('.app__input button').innerText = 'Back to camera'
-                    var canvas = document.querySelector('canvas')
-                    canvas.style.display = 'none'
-                    var context = canvas.getContext('2d')
-                    context.drawImage(video, 0, 0, 500, 500)
-                    make_base();
-                    document.querySelector('.app__container').style.visibility = 'hidden'
-                    document.querySelector('.app__container').style.height = 0
-                    document.querySelector('.screenshot').style.display = 'block'
-                }
+                // if (document.querySelector('.app__input button').innerText != 'Take a picture') {
+                //     document.querySelector('.app__input button').innerText = 'Take a picture'
+                //     document.querySelector('.app__container').style.visibility = 'visible'
+                //     document.querySelector('.app__container').style.height = '100%'
+                //     document.querySelector('.screenshot').style.display = 'none'
+                // } else {
+                // document.querySelector('.app__input button').innerText = 'Back to camera'
+                var canvas = document.querySelector('canvas')
+                canvas.style.display = 'none'
+                var context = canvas.getContext('2d')
+                context.drawImage(video, 0, 0, 500, 500)
+                make_base();
+                document.querySelector('.app__container').style.visibility = 'hidden'
+                document.querySelector('.app__container').style.height = 0
+                document.querySelector('.screenshot').style.display = 'block'
+                // }
+            }
+
+            function backToCamera() {
+                document.querySelector('.app__container').style.visibility = 'visible'
+                document.querySelector('.app__container').style.height = '100%'
+                document.querySelector('.screenshot').style.display = 'none'
             }
 
             function make_base() {

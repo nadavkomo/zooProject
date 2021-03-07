@@ -146,3 +146,12 @@ function closeModel() {
     document.querySelector('.answers').style.display = 'block'
     nextQuestion()
 }
+
+function togglePassword() {
+    var x = document.querySelector(".password-input");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}

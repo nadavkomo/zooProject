@@ -54,10 +54,14 @@
         <div class="container">
             <div class="camera">
                 <div class="app__input">
-                    <section class="control-btns">
+                    <!-- <section class="control-btns">
                         <button onclick="takePicture()">Take a picture</button>
                         <button onclick="backToCamera()">Back to camera</button>
-                    </section>
+                    </section> -->
+                    <label class="switch">
+                        <input type="checkbox" onclick="takePicture()" checked>
+                        <span class="slider round"></span>
+                    </label>
                     <button><input type="file" onchange="onFileSelected(event)" /></button>
                 </div>
                 <!-- <button onclick="changeCamera()">Change Camera</button> -->
@@ -167,22 +171,23 @@
             }
 
             function takePicture() {
-                // if (document.querySelector('.app__input button').innerText != 'Take a picture') {
-                //     document.querySelector('.app__input button').innerText = 'Take a picture'
-                //     document.querySelector('.app__container').style.visibility = 'visible'
-                //     document.querySelector('.app__container').style.height = '100%'
-                //     document.querySelector('.screenshot').style.display = 'none'
-                // } else {
-                // document.querySelector('.app__input button').innerText = 'Back to camera'
-                var canvas = document.querySelector('canvas')
-                canvas.style.display = 'none'
-                var context = canvas.getContext('2d')
-                context.drawImage(video, 0, 0, 500, 500)
-                make_base();
-                document.querySelector('.app__container').style.visibility = 'hidden'
-                document.querySelector('.app__container').style.height = 0
-                document.querySelector('.screenshot').style.display = 'block'
-                // }
+                console.log(document.querySelector('.screenshot').style.display);
+                if (document.querySelector('.screenshot').style.display === 'block') {
+                    // document.querySelector('.app__input button').innerText = 'Take a picture'
+                    document.querySelector('.app__container').style.visibility = 'visible'
+                    document.querySelector('.app__container').style.height = '100%'
+                    document.querySelector('.screenshot').style.display = 'none'
+                } else {
+                    // document.querySelector('.app__input button').innerText = 'Back to camera'
+                    var canvas = document.querySelector('canvas')
+                    canvas.style.display = 'none'
+                    var context = canvas.getContext('2d')
+                    context.drawImage(video, 0, 0, 500, 500)
+                    make_base();
+                    document.querySelector('.app__container').style.visibility = 'hidden'
+                    document.querySelector('.app__container').style.height = 0
+                    document.querySelector('.screenshot').style.display = 'block'
+                }
             }
 
             function backToCamera() {
@@ -372,7 +377,7 @@
                 document.querySelector('.model').style.display = 'none'
                 document.querySelector('.answers').style.display = 'block'
             }
-        </script> -->
+        </script> 
     </section>
     <section style="display: none;" class="finish text-center">
         <section class="content">

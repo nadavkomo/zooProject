@@ -197,7 +197,10 @@ button:focus {
     width: 150px;
 }
 
-
+.control-btns {
+    display: flex;
+    align-items: center;
+}
 
 .screenshot {
     width: 80%;

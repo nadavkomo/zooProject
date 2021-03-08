@@ -320,6 +320,7 @@ button:focus {
     display: inline-block;
     width: 60px;
     height: 34px;
+    margin: 8px;
 }
 
 .switch input {

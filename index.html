@@ -54,20 +54,27 @@
         <div class="container">
             <div class="camera">
                 <div class="app__input">
-                    <section class="control-btns">
+                    <!-- <section class="control-btns"> -->
                         <!-- <button onclick="takePicture()">Take a picture</button>
                         <button onclick="backToCamera()">Back to camera</button> -->
+                        <!-- <p>Freeze picture</p>
+                            <label class="switch">
+                                <input type="checkbox" onclick="takePicture()">
+                                <span class="slider round"></span>
+                            </label> -->
+                    <!-- </section> -->
+                    <!-- <button><input type="file" onchange="onFileSelected(event)" /></button> -->
+                </div>
+                <!-- <button onclick="changeCamera()">Change Camera</button> -->
+                <!-- <button class="change-model-btn" onclick="changeModel()">Change 3D Model</button> -->
+                <div class="btns-action">
+                    <section class="control-btns">
                         <p>Freeze picture</p>
                         <label class="switch">
                             <input type="checkbox" onclick="takePicture()">
                             <span class="slider round"></span>
                         </label>
                     </section>
-                    <!-- <button><input type="file" onchange="onFileSelected(event)" /></button> -->
-                </div>
-                <!-- <button onclick="changeCamera()">Change Camera</button> -->
-                <!-- <button class="change-model-btn" onclick="changeModel()">Change 3D Model</button> -->
-                <div class="btns-action">
                     <button onclick="changeAction('none')">STOP</button>
                     <button onclick="changeAction('Running')">RUN</button>
                     <button onclick="changeAction('Idle')">IDLE</button>
@@ -95,12 +102,10 @@
                         </div>
                     </div>
                     <div class="btns-position">
-                        <button onclick="changePositionTop()">Up</button>
-                        <!-- <section> -->
-                        <button onclick="changePositionLeft()">Left</button>
-                        <button onclick="changePositionRight()">Right</button>
-                        <!-- </section> -->
-                        <button onclick="changePositionBottom()">Down</button>
+                        <button onclick="changePositionTop()">🢁</button>
+                        <button onclick="changePositionLeft()">🢀</button>
+                        <button onclick="changePositionRight()">🢂</button>
+                        <button onclick="changePositionBottom()">🢃</button>
                     </div>
                 </section>
                 <canvas style="display: none;" class="canvas" height=500 width=500></canvas>

@@ -89,11 +89,12 @@ input {
     justify-content: center;
 }
 
-button, .quiz .answers>* {
+button,
+.quiz .answers>* {
     max-width: 400px;
     min-width: fit-content;
     padding: .5rem;
-    margin: .5rem!important;
+    margin: .5rem !important;
     font-size: 1.25rem;
     border: 2px solid #D9E021;
     color: #D9E021;
@@ -102,7 +103,9 @@ button, .quiz .answers>* {
     font-weight: lighter
 }
 
-button:hover, .quiz .answers>*:hover, .quiz .answers>*::selection {
+button:hover,
+.quiz .answers>*:hover,
+.quiz .answers>*::selection {
     cursor: pointer;
     text-shadow: 1px 1px 10px #ffffff;
 }
@@ -125,6 +128,7 @@ button:focus {
 .station input {
     width: 100%;
 }
+
 .quiz .answers {
     width: 80%;
 }
@@ -137,7 +141,8 @@ button:focus {
     min-height: 100vh;
 }
 
-.finish .content h1, .login .content h1 {
+.finish .content h1,
+.login .content h1 {
     font-size: 40px;
     margin-bottom: 80px;
 }
@@ -200,6 +205,11 @@ button:focus {
 .control-btns {
     display: flex;
     align-items: center;
+}
+
+.control-btns p {
+    margin-right: 5px;
+    font-size: 20px
 }
 
 .screenshot {
@@ -307,15 +317,15 @@ button:focus {
     display: inline-block;
     width: 60px;
     height: 34px;
-  }
-  
-  .switch input { 
+}
+
+.switch input {
     opacity: 0;
     width: 0;
     height: 0;
-  }
-  
-  .slider {
+}
+
+.slider {
     position: absolute;
     cursor: pointer;
     top: 0;
@@ -325,9 +335,9 @@ button:focus {
     background-color: #ccc;
     -webkit-transition: .4s;
     transition: .4s;
-  }
-  
-  .slider:before {
+}
+
+.slider:before {
     position: absolute;
     content: "";
     height: 26px;
@@ -337,27 +347,27 @@ button:focus {
     background-color: white;
     -webkit-transition: .4s;
     transition: .4s;
-  }
-  
-  input:checked + .slider {
+}
+
+input:checked+.slider {
     background-color: #2196F3;
-  }
-  
-  input:focus + .slider {
+}
+
+input:focus+.slider {
     box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .slider:before {
+}
+
+input:checked+.slider:before {
     -webkit-transform: translateX(26px);
     -ms-transform: translateX(26px);
     transform: translateX(26px);
-  }
-  
-  /* Rounded sliders */
-  .slider.round {
+}
+
+/* Rounded sliders */
+.slider.round {
     border-radius: 34px;
-  }
-  
-  .slider.round:before {
+}
+
+.slider.round:before {
     border-radius: 50%;
-  }
+}

@@ -88,7 +88,7 @@
                             <video muted autoPlay class="app__videoFeed"></video>
                             <div class="demo">
                                 <model-viewer id="model1" src="./glb/RobotExpressive.glb" camera-controls autoplay
-                                    animation-name="Armature|Die.001" ar ar-modes="scene-viewer webxr" ar-scale="auto" >
+                                    animation-name="none" ar ar-modes="scene-viewer webxr" ar-scale="auto" >
                                 </model-viewer>
                             </div>
                         </div>
@@ -96,7 +96,7 @@
                             <img id="myimage" src="./default.png" alt="" />
                             <div class="demo">
                                 <model-viewer id="model2" src="./glb/RobotExpressive.glb" camera-controls autoplay
-                                    animation-name="none" ar>
+                                    animation-name="none" ar ar-modes="scene-viewer webxr" ar-scale="auto">
                                 </model-viewer>
                             </div>
                         </div>
@@ -284,7 +284,7 @@
                 var demo1 = document.querySelector('.app__container .demo')
                 var modelViewer2 = document.getElementById('model2')
                 var leftNumbers = demo1.style.left.replace('px', '')
-                if (+leftNumbers > 350 || (isMobile && +leftNumbers > 150)) {
+                if (+leftNumbers > 350 || (isMobile && +leftNumbers > 90)) {
                     demo1.style.left = '0px'
                     modelViewer2.style.left = '0px'
                 }
@@ -299,8 +299,8 @@
                 var leftNumbers = demo1.style.left.replace('px', '')
                 if (+leftNumbers === 0) {
                     if (isMobile) {
-                        demo1.style.left = '200px'
-                        modelViewer2.style.left = '200px'
+                        demo1.style.left = '140px'
+                        modelViewer2.style.left = '140px'
                     } else {
                         demo1.style.left = '400px'
                         modelViewer2.style.left = '400px'
